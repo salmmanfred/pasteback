@@ -1,5 +1,5 @@
 [build]
-builder = "deno"
+builder = "nixpacks"
 buildCommand = "echo living with my bithces"
 
 [deploy]
