@@ -1,6 +1,6 @@
 [build]
 builder = "deno"
-buildCommand = "deno run -A main.js"
+buildCommand = "echo living with my bithces"
 
 [deploy]
 startCommand = "deno run -A main.js"
