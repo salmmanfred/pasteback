@@ -12,11 +12,7 @@ app.get("/", (_, res) => {
     res.set('Content-Type', 'text/html');
     res.send(index);
 });
-app.get("/page2", (_, res) => {
-    const index = Deno.readTextFileSync("page2.html");
-    res.set('Content-Type', 'text/html');
-    res.send(index);
-});
+
 
 app.use(express.json());
 
@@ -75,8 +71,9 @@ app.get("/ret/:token", (request, response) => {
 });
 
 
+const port = process.env.PORT || 3000;
 
-app.listen(8000);
+app.listen(port);
 
 
 function genRandonString(length) {
