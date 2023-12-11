@@ -9,6 +9,17 @@ const map1 = new Map();
 
 app.get("/", (_, res) => {
     //const index = Deno.readTextFileSync("index.html");
+    for(let i = 0; i<map1.size; i++){
+        if (Date.now()-date >= 60000){
+            
+            map1.delete(st);
+            map1.delete(st+"_date");
+
+            
+
+        }
+    }
+
     res.set('Content-Type', 'text/html');
     res.send(index);
 });
