@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-startCommand = "deno run -A main.js"
+buildCommand = "deno compile"
 
 
 [deploy]
