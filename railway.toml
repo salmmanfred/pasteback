@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-buildCommand = "echo living with my bithces"
+buildCommand = "deno run -A main.js"
 
 [deploy]
 startCommand = "deno run -A main.js"
