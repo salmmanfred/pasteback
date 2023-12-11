@@ -71,7 +71,7 @@ app.get("/ret/:token", (request, response) => {
 
 
 
-app.listen({ hostname: "192.168.68.102", port: 8000 });
+app.listen(8000);
 
 
 function genRandonString(length) {

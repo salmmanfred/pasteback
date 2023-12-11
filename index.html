@@ -82,7 +82,7 @@
             let info = document.getElementById("sendit").value
             let ret = "";
             console.log("r "+info);
-            fetch("http://192.168.68.102:8000/new", {
+            fetch("http://https://pasteback-production.up.railway.app/new", {
             method: "POST",
             body: JSON.stringify({
                 "text": info,
@@ -94,12 +94,12 @@
             }).then((response) =>  response.text()).then((resp) => document.getElementById("bigone").textContent = resp)
             
         }
-
+        //{ hostname: "192.168.68.102", port: 8000 }
         function get_it(){
             let info = document.getElementById("getit").value
             let ret = "";
             console.log("r "+info);
-            fetch("http://192.168.68.102:8000/ret/"+info, {
+            fetch("http://https://pasteback-production.up.railway.app/ret/"+info, {
             method: "get",
             
             headers: {
