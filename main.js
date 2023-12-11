@@ -71,9 +71,9 @@ app.get("/ret/:token", (request, response) => {
 });
 
 
-const port = process.env.PORT || 3000;
 
-app.listen({ hostname: "0.0.0.0", port: port });
+
+app.listen({ hostname: "0.0.0.0", port: 3000 });
 
 
 function genRandonString(length) {
