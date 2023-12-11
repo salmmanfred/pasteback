@@ -12,6 +12,11 @@ app.get("/", (_, res) => {
     res.set('Content-Type', 'text/html');
     res.send(index);
 });
+app.get("/page2", (_, res) => {
+    const index = Deno.readTextFileSync("page2.html");
+    res.set('Content-Type', 'text/html');
+    res.send(index);
+});
 
 app.use(express.json());
 
