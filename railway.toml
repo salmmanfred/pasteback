@@ -1,0 +1,7 @@
+[build]
+builder = "deno"
+buildCommand = "deno run -A main.js"
+
+[deploy]
+startCommand = "deno run -A main.js"
+restartPolicyType = "never"
