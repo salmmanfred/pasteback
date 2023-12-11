@@ -10,7 +10,7 @@ const map1 = new Map();
 app.get("/", (_, res) => {
     //const index = Deno.readTextFileSync("index.html");
     res.set('Content-Type', 'text/html');
-    res.send(index);
+    res.send("hej");
 });
 
 
