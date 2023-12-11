@@ -9,16 +9,7 @@ const map1 = new Map();
 
 app.get("/", (_, res) => {
     //const index = Deno.readTextFileSync("index.html");
-    for(let i = 0; i<map1.size; i++){
-        if (Date.now()-date >= 60000){
-            
-            map1.delete(st);
-            map1.delete(st+"_date");
-
-            
-
-        }
-    }
+    
 
     res.set('Content-Type', 'text/html');
     res.send(index);
@@ -37,8 +28,21 @@ app.post("/new", (request, response) => {
     while (!stringOk){
         const strt = genRandonString(4);
         if (!map1.has(strt)){
+            
             stringOk = true;
             str = strt;
+        }else{
+            const date = map1.get(strt+"_date");
+
+            if (Date.now()-date >= 60000){
+                
+                map1.delete(strt);
+                map1.delete(strt+"_date");
+
+                stringOk = true;
+                str = strt;
+
+            }
         }
     } 
     if (str == ""){
@@ -65,12 +69,12 @@ app.get("/ret/:token", (request, response) => {
     const s = map1.get(st);
     const date = map1.get(st+"_date");
     if (Date.now()-date >= 60000){
+        
+        map1.delete(st);
+        map1.delete(st+"_date");
         response.send(JSON.stringify({
             "text": "TooOLD"
         }));
-        map1.delete(st);
-        map1.delete(st+"_date");
-
         return
 
     }
