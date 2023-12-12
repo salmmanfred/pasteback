@@ -17,7 +17,7 @@ app.get("/", (_, res) => {
 
 app.get("/cc", (_, res) => {
     //const index = Deno.readTextFileSync("index.html");
-    map1 = new Map();
+    map1.clear()
 
     res.set('Content-Type', 'text/html');
     res.send(index);
