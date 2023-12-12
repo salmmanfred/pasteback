@@ -20,12 +20,13 @@ app.use(express.json());
 
 
 app.post("/new", (request, response) => {
-    const info = request.body;
+    const pinfo = JSON.stringify(request.body);
     
-    if (!isJsonString(info)){
+    if (!isJsonString(pinfo)){
         response.send("Invalid json");
         return
     }
+    const info = JSON.parse(pinfo)
 
     let stringOk = false;
     let str = ""
