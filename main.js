@@ -15,6 +15,13 @@ app.get("/", (_, res) => {
     res.send(index);
 });
 
+app.get("/cc", (_, res) => {
+    //const index = Deno.readTextFileSync("index.html");
+    map1 = new Map();
+
+    res.set('Content-Type', 'text/html');
+    res.send(index);
+});
 
 app.use(express.json());
 
