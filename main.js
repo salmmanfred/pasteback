@@ -21,7 +21,11 @@ app.use(express.json());
 
 app.post("/new", (request, response) => {
     const info = request.body;
-   
+    
+    if (!isJsonString(info)){
+        response.send("Invalid json");
+        return
+    }
 
     let stringOk = false;
     let str = ""
@@ -100,3 +104,11 @@ function genRandonString(length) {
     }
     return result;
  }
+ function isJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
