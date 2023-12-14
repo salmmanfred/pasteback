@@ -6,6 +6,7 @@ const app = express();
 const index = await Deno.readTextFile("index.html");
 
 const map1 = new Map();
+const TIME = 100000;
 
 app.get("/", (_, res) => {
     //const index = Deno.readTextFileSync("index.html");
@@ -46,7 +47,7 @@ app.post("/new", (request, response) => {
         }else{
             const date = map1.get(strt+"_date");
 
-            if (Date.now()-date >= 60000){
+            if (Date.now()-date >= TIME){
                 
                 map1.delete(strt);
                 map1.delete(strt+"_date");
@@ -80,7 +81,7 @@ app.get("/ret/:token", (request, response) => {
 
     const s = map1.get(st);
     const date = map1.get(st+"_date");
-    if (Date.now()-date >= 60000){
+    if (Date.now()-date >= TIME){
         
         map1.delete(st);
         map1.delete(st+"_date");
