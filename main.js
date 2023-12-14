@@ -99,8 +99,8 @@ app.get("/ret/:token", (request, response) => {
 
 
 
-
-app.listen({ hostname: "0.0.0.0", port: 3000 });
+const PORT = Deno.env.get("PORT");
+app.listen({ hostname: "0.0.0.0", port: PORT });
 
 
 function genRandonString(length) {
