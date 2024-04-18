@@ -49,6 +49,8 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        
+        
 
         button {
             background-color: #4CAF50;
@@ -65,10 +67,18 @@
         #bigone{
             margin-top: 3em;
         }
+        .hid{
+            visibility: hidden;
+        }
+        
     </style>
 </head>
 <body>
-    
+    <div class="hid">
+        <h2>Get Information</h2>
+        <input type="text" id="disable" placeholder="Enter code">
+        <button onclick="disable()">OK</button>
+    </div>
     <h1 id="bigone">PasteBack</h1>
     <div class="container">
         <h2>Get Information</h2>
@@ -78,25 +88,53 @@
     <div class="container">
         <h2>Send Information</h2>
         <input type="text" id="sendit" placeholder="Enter information">
+        
+        How many minutes to save for: (max 10)
+        <input type="number" id="time" value=1 min=1 max=10> 
         <button onclick="send_it()">OK</button>
     </div>
     <div class="container">
         <h2>Information</h2>
-        Content is only saved for about 1 minute, and is deleted after being retrieved. Note that the content is not encrypted on the server.
-
-
+        Content is only saved for about 1-10 minute, and is deleted after being retrieved. Note that the content is not encrypted on the server.
     </div>
+    
 
     <script>
+        let dis = false;
+        function disable(){
+            if (!dis){
+                fetch("./rb", {
+                method: "GET",
+                }).then()
+            }
+            dis = true
+
+        }
+        function check_dis(){
+            console.log("dis: " + dis)
+            let dis2 = document.getElementById("disable").value
+            if (dis){
+                return true
+            }else{
+                if (dis2 != ""){
+                    disable()
+                    return true
+                }
+            }
+            return false
+        }
+
         function send_it(){
             let info = document.getElementById("sendit").value
+            let time = document.getElementById("time").value
+            if (check_dis()){return}
             let ret = "";
-            console.log("r "+info);
+            //console.log("r "+info);
             fetch("./new", {
             method: "POST",
             body: JSON.stringify({
                 "text": info,
-                
+                "save_time" : time
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -106,9 +144,11 @@
         }
         //{ hostname: "192.168.68.102", port: 8000 }
         function get_it(){
+            if (check_dis()){return}
+
             let info = document.getElementById("getit").value
             let ret = "";
-            console.log("r "+info);
+           // console.log("r "+info);
             fetch("./ret/"+info, {
             method: "get",
             
