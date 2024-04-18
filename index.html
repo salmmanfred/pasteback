@@ -60,6 +60,10 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        .dc{
+            height: 0;
+            margin: -100%;
+        }
 
         button:hover {
             background-color: #45a049;
@@ -68,6 +72,9 @@
             margin-top: 3em;
         }
         .hid{
+            height: 0;
+            margin: -1%;
+
             visibility: hidden;
         }
         
@@ -75,9 +82,10 @@
 </head>
 <body>
     <div class="hid">
-        <h2>Get Information</h2>
-        <input type="text" id="disable" placeholder="Enter code">
-        <button onclick="disable()">OK</button>
+        <h2 class="dc">Get Information</h2>
+        <input class="dc" type="text" id="disable" placeholder="Enter code">
+        <button class="dc" onclick="disable()">OK</button>
+        
     </div>
     <h1 id="bigone">PasteBack</h1>
     <div class="container">
