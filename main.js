@@ -54,19 +54,7 @@ app.post("/new", (request, response) => {
             
             stringOk = true;
             str = strt;
-        }/*else{
-            const date = map1.get(strt+"_date");
-
-            if (Date.now()-date >= TIME){
-                
-                map1.delete(strt);
-                map1.delete(strt+"_date");
-
-                stringOk = true;
-                str = strt;
-
-            }
-        }*/
+        }
     } 
     if (str == ""){
         response.send("err");
@@ -82,10 +70,10 @@ app.post("/new", (request, response) => {
 
     map1.set(str,info);
     
-   // map1.set(str+"_date",Date.now());
+   
     setTimeout(()=>{
         map1.delete(str);
-        map1.delete(str+"_date")
+       
     }, save_time*TIME)
 
     response.send(str);
@@ -103,8 +91,7 @@ app.get("/ret/:token", (request, response) => {
 
     if (!map1.has(st)){
         
-      //  map1.delete(st);
-       // map1.delete(st+"_date");
+      
         response.send(JSON.stringify({
             "text": "The Token used has expired / You used the wrong token"
         }));
@@ -115,7 +102,7 @@ app.get("/ret/:token", (request, response) => {
     
     
     map1.delete(st);
-   // map1.delete(st+"_date");
+ 
     
     response.send(s);
 
@@ -139,7 +126,7 @@ function genRandonString(length) {
  function isJsonString(str) {
     try {
         JSON.parse(str);
-    } catch (e) {
+    } catch (_) {
         return false;
     }
     return true;
