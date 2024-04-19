@@ -7,7 +7,7 @@ mod paste_hand;
 async fn main() {
     println!("Starting server");
 
-    openfile::write_file_bytes("./favicon.ico", include_bytes!("../img/favicon.ico").to_vec());
+    openfile::write_file_bytes("./favicon.ico", include_bytes!("../img/favicon.ico").to_vec()).unwrap();
     let app = Router::new()
         // `GET /` goes to `root`
         .route("/", get(root))
