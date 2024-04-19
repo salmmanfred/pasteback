@@ -1,6 +1,6 @@
-use std::{collections::HashMap, io::empty, sync::Mutex, thread, time};
+use std::{collections::HashMap, sync::Mutex, thread, time};
 
-use axum::extract::Json;
+use axum::extract::{Json, Path};
 use rand::{distributions::Alphanumeric, Rng};
 use serde::{Deserialize, Serialize};
 
@@ -21,7 +21,7 @@ impl Paste{
         Self { save_time: i, text: s }
     }
 }
-pub async fn post_token(Json(item): Json<(Paste)>)->String{
+pub async fn post_token(Json(item): Json<Paste>)->String{
     //let item = Paste::new(item.0,item.1);
     let mut ttl = item.save_time;
     if ttl > 10{
@@ -32,15 +32,16 @@ pub async fn post_token(Json(item): Json<(Paste)>)->String{
     }
     let key = create_key(item);
     
-    //delete_after(key.clone(), ttl as u64);
+    delete_after(key.clone(), ttl as u64);
 
    
     return key
 }
 
-pub async fn ret_token(token: String)->Json<Paste>{
+pub async fn ret_token(Path(params): Path<String>)->Json<Paste>{
     let mut tl = TOKENS.lock().unwrap();
-    println!("token: {}", token);
+    let token = params;
+    
     if tl.contains_key(&token){
          
   
@@ -49,7 +50,7 @@ pub async fn ret_token(token: String)->Json<Paste>{
     else {
         drop(tl);
 
-        return Json(Paste::new("tooold".to_string(), 0))
+        return Json(Paste::new("Wrong token/token expiered".to_string(), 0))
     }
 }
 
@@ -67,7 +68,6 @@ fn create_key(paste: Paste)->String{
         }
     }
     tl.insert(key.clone(), paste);
-    println!("{:#?}", tl);
     drop(tl);
     return key
 }

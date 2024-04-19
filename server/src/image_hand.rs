@@ -1,4 +1,4 @@
-use axum::{body::{Body, BodyDataStream}, http::{header, StatusCode}, response::{Html, IntoResponse}, routing::get, Router};
+use axum::{body::Body, http::{header, StatusCode}, response::IntoResponse};
 use tokio_util::io::ReaderStream;
 
 pub async fn image() -> impl IntoResponse {

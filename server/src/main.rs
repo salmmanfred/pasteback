@@ -1,7 +1,6 @@
 #[macro_use]
 extern crate lazy_static;
-use axum::{body::{Body, BodyDataStream}, http::{header, StatusCode}, response::{Html, IntoResponse}, routing::{get, post}, Router};
-use tokio_util::io::ReaderStream;
+use axum::{ response::Html, routing::{get, post}, Router};
 mod image_hand;
 mod paste_hand;
 #[tokio::main]

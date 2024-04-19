@@ -125,7 +125,7 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-            }).then((response) =>  response).then((resp) => {document.getElementById("bigone").textContent = resp.text; console.log(resp)})
+            }).then((response) =>  response.json()).then((resp) => {document.getElementById("bigone").textContent = resp.text; console.log(resp)})
             
         }
     </script>
