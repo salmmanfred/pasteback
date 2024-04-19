@@ -1,3 +1,5 @@
+use std::fs;
+
 use axum::{body::Body, http::{header, StatusCode}, response::IntoResponse};
 use tokio_util::io::ReaderStream;
 
@@ -6,6 +8,13 @@ pub async fn image() -> impl IntoResponse {
         Ok(file) => file,
         Err(err) => return Err((StatusCode::NOT_FOUND, format!("File not found: {}", err))),
     };
+
+    let paths = fs::read_dir("./").unwrap();
+
+    for path in paths {
+        println!("Name: {}", path.unwrap().path().display())
+    }
+
     // convert the `AsyncRead` into a `Stream`
     let stream = ReaderStream::new(file);
     // convert the `Stream` into an `axum::body::HttpBody`
