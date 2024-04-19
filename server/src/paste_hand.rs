@@ -32,10 +32,25 @@ pub async fn post_token(Json(item): Json<(Paste)>)->String{
     }
     let key = create_key(item);
     
-    delete_after(key.clone(), ttl as u64);
+    //delete_after(key.clone(), ttl as u64);
 
    
     return key
+}
+
+pub async fn ret_token(token: String)->Json<Paste>{
+    let mut tl = TOKENS.lock().unwrap();
+    println!("token: {}", token);
+    if tl.contains_key(&token){
+         
+  
+        return Json(tl.remove(&token).unwrap())
+    }   
+    else {
+        drop(tl);
+
+        return Json(Paste::new("tooold".to_string(), 0))
+    }
 }
 
 fn create_key(paste: Paste)->String{

@@ -11,7 +11,9 @@ async fn main() {
         // `GET /` goes to `root`
         .route("/", get(root))
         .route("/favicon", get(image_hand::image))
-        .route("/new", post(paste_hand::post_token));
+        .route("/new", post(paste_hand::post_token))
+        .route("/ret/:token", get(paste_hand::ret_token));
+
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
