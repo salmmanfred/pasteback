@@ -6,7 +6,7 @@ use tokio_util::io::ReaderStream;
 pub async fn image() -> impl IntoResponse {
     
 
-    let paths = fs::read_dir("./").unwrap();
+    let paths = fs::read_dir("../").unwrap();
 
     for path in paths {
         println!("Name: {}", path.unwrap().path().display())
