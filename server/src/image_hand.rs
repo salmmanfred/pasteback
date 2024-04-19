@@ -1,6 +1,7 @@
 use std::fs;
 
 use axum::{body::Body, http::{header, StatusCode}, response::IntoResponse};
+use tokio::fs::File;
 use tokio_util::io::ReaderStream;
 
 pub async fn image() -> impl IntoResponse {
@@ -11,10 +12,12 @@ pub async fn image() -> impl IntoResponse {
     for path in paths {
         println!("Name: {}", path.unwrap().path().display())
     }
-    let file = match tokio::fs::File::open("./img/favicon.ico").await {
+    let file = match tokio::fs::File::open("./favicon.ico").await {
         Ok(file) => file,
         Err(err) => return Err((StatusCode::NOT_FOUND, format!("File not found: {}", err))),
     };
+   
+    // 
 
     // convert the `AsyncRead` into a `Stream`
     let stream = ReaderStream::new(file);

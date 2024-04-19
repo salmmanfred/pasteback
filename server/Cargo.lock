@@ -384,6 +384,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3fdb12b2476b595f9358c5161aa467c2438859caa136dec86c26fdd2efe17b92"
 
 [[package]]
+name = "openfile"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8be46ef74e1471310f43a6a270d6f39eb5d8c0c99e5169deefdc8c52567660b4"
+
+[[package]]
 name = "parking_lot"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -590,6 +596,7 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "lazy_static",
+ "openfile",
  "rand",
  "serde",
  "tokio",

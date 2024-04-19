@@ -6,6 +6,8 @@ mod paste_hand;
 #[tokio::main]
 async fn main() {
     println!("Starting server");
+
+    openfile::write_file_bytes("./favicon.ico", include_bytes!("../img/favicon.ico").to_vec());
     let app = Router::new()
         // `GET /` goes to `root`
         .route("/", get(root))
