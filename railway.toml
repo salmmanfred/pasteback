@@ -1,10 +1,10 @@
 [build]
 builder = "nixpacks"
-startCommand = "deno run -A main.js"
+startCommand = "cargo run"
 
 
 [deploy]
-startCommand = "deno run -A main.js"
+startCommand = "cargo run"
 healthcheckPath = "/"
 healthcheckTimeout = 100
 restartPolicyType = "never"
