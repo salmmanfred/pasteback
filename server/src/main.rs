@@ -22,6 +22,6 @@ async fn health()->StatusCode{
 }
 
 async fn root() -> Html<String>{
-    Html(include_str!("../../index.html").to_string())
+    Html(include_str!("../index.html").to_string())
 }
 
