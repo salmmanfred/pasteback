@@ -1,10 +1,10 @@
 [build]
 builder = "nixpacks"
-startCommand = "cargo run"
+startCommand = "cargo build --release"
 
 
 [deploy]
-startCommand = "cargo run"
-healthcheckPath = "/"
-healthcheckTimeout = 100
-restartPolicyType = "never"
+startCommand = "cargo run --release"
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "On-Failure"
