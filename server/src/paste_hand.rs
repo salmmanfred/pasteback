@@ -30,6 +30,9 @@ pub async fn post_token(Json(item): Json<Paste>)->String{
     if ttl < 1{
         ttl = 1;
     }
+    if item.text.len() > 10*1024{
+        return "Error Too big of a fucking message jesus christ calm down you fucker".to_string()
+    }
     let key = create_key(item);
     
     delete_after(key.clone(), ttl as u64);
