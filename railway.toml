@@ -4,7 +4,6 @@ startCommand = "cargo build --release"
 
 
 [deploy]
-startCommand = "cargo run --release"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "never"
