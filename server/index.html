@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./favicon">
     <title>PasteBack</title>
     <style>
         body {
@@ -60,33 +61,21 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        .dc{
-            height: 0;
-            margin: -100%;
-        }
+        
 
         button:hover {
             background-color: #45a049;
         }
         #bigone{
-            margin-top: 3em;
+            margin-top: 10em;
         }
-        .hid{
-            height: 0;
-            margin: -1%;
-
-            visibility: hidden;
-        }
+        
         
     </style>
 </head>
 <body>
-    <div class="hid">
-        <h2 class="dc">Get Information</h2>
-        <input class="dc" type="text" id="disable" placeholder="Enter code">
-        <button class="dc" onclick="disable()">OK</button>
-        
-    </div>
+    
+
     <h1 id="bigone">PasteBack</h1>
     <div class="container">
         <h2>Get Information</h2>
@@ -103,46 +92,24 @@
     </div>
     <div class="container">
         <h2>Information</h2>
+        <h3>THIS IS AN EXPERIMENTAL VERSION</h3>
+
         Content is only saved for about 1-10 minute, and is deleted after being retrieved. Note that the content is not encrypted on the server.
     </div>
     
 
     <script>
-        let dis = false;
-        function disable(){
-            if (!dis){
-                fetch("./rb", {
-                method: "GET",
-                }).then()
-            }
-            dis = true
-
-        }
-        function check_dis(){
-            console.log("dis: " + dis)
-            let dis2 = document.getElementById("disable").value
-            if (dis){
-                return true
-            }else{
-                if (dis2 != ""){
-                    disable()
-                    return true
-                }
-            }
-            return false
-        }
-
+        
         function send_it(){
             let info = document.getElementById("sendit").value
             let time = document.getElementById("time").value
-            if (check_dis()){return}
             let ret = "";
             //console.log("r "+info);
             fetch("./new", {
             method: "POST",
             body: JSON.stringify({
                 "text": info,
-                "save_time" : time
+                "save_time" : parseInt(time)
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -152,7 +119,6 @@
         }
         //{ hostname: "192.168.68.102", port: 8000 }
         function get_it(){
-            if (check_dis()){return}
 
             let info = document.getElementById("getit").value
             let ret = "";
@@ -163,7 +129,7 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-            }).then((response) =>  response.json()).then((resp) => document.getElementById("bigone").textContent = resp.text)
+            }).then((response) =>  response.json()).then((resp) => {document.getElementById("bigone").textContent = resp.text; console.log(resp)})
             
         }
     </script>
