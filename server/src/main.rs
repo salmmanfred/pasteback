@@ -7,16 +7,16 @@ mod paste_hand;
 async fn main() {
     println!("Starting server");
 
-    openfile::write_file_bytes("./favicon.ico", include_bytes!("../img/favicon.ico").to_vec()).unwrap();
+    
     let app = Router::new()
         // `GET /` goes to `root`
         .route("/", get(root))
-        .route("/favicon", get(image_hand::image))
+        .route("/favicon", get(image_hand::faivcon))
         .route("/new", post(paste_hand::post_token))
         .route("/ret/:token", get(paste_hand::ret_token))
         .route("/health", get(health));
 
-    let port = option_env!("PORT").unwrap(); //"3000";//
+    let port = "3000";//option_env!("PORT").unwrap(); //"3000";//
     let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}",port)).await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
