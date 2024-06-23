@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" href="./favicon">
     <title>PasteBack</title>
     <style>
-
+        
         .center {
             display: grid;
             place-items: center;
@@ -127,13 +127,15 @@
         <h3>THIS IS AN EXPERIMENTAL VERSION</h3>
 
         Content is only saved for about 1-10 minute, and is deleted after being retrieved. Note that the content is not encrypted on the server.
-
+        <a href="https://github.com/salmmanfred/pasteback/">Github</a>
     </div>
     
 
     <script>
    
         function send_it(){
+            //Gets the requested save time and text
+            //sends it to the server to save and then displays the token in a popup
             let info = document.getElementById("sendit").value
             let time = document.getElementById("time").value
             let ret = "";
@@ -150,12 +152,12 @@
             }).then((response) =>  response.text()).then((resp) => popup("Token: " + resp,"",false))
             
         }
-        //{ hostname: "192.168.68.102", port: 8000 }
+        
         function get_it(){
-
+            //gets the information live from the server and then displays it in a popup
             let info = document.getElementById("getit").value
             let ret = "";
-           // console.log("r "+info);
+           
             fetch("./ret/"+info, {
             method: "get",
             
