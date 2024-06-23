@@ -6,6 +6,12 @@
     <link rel="icon" type="image/x-icon" href="./favicon">
     <title>PasteBack</title>
     <style>
+
+        .center {
+            display: grid;
+            place-items: center;
+        }
+        
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -67,14 +73,40 @@
             background-color: #45a049;
         }
         #bigone{
-            margin-top: 10em;
+            margin-top: 2em;
         }
-        
-        
+        .b-gt {
+            background-color: rgb(128, 128, 128, 0.8);
+            height: 100%;
+        }
+        .center {
+            display: grid;
+            place-items: center;
+        }
+        .card {
+
+            background-color: white;
+            border-radius: 5px;
+            width: 50%;
+            padding: 3em;
+        }
+        .full {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+        .w100{
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     
+
+    <div id="popup"></div>
 
     <h1 id="bigone">PasteBack</h1>
     <div class="container">
@@ -95,11 +127,12 @@
         <h3>THIS IS AN EXPERIMENTAL VERSION</h3>
 
         Content is only saved for about 1-10 minute, and is deleted after being retrieved. Note that the content is not encrypted on the server.
+
     </div>
     
 
     <script>
-        
+   
         function send_it(){
             let info = document.getElementById("sendit").value
             let time = document.getElementById("time").value
@@ -114,7 +147,7 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-            }).then((response) =>  response.text()).then((resp) => document.getElementById("bigone").textContent = resp)
+            }).then((response) =>  response.text()).then((resp) => popup("Token: " + resp,"",false))
             
         }
         //{ hostname: "192.168.68.102", port: 8000 }
@@ -129,7 +162,43 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-            }).then((response) =>  response.json()).then((resp) => {document.getElementById("bigone").textContent = resp.text; console.log(resp)})
+            }).then((response) =>  response.json()).then((resp) => {popup(resp.text,"",false)})
+            
+        }
+
+
+
+
+        function popup(title, text,hide){
+            //if it the hide variable is true its time to hide the popup
+            if (hide){
+                //it changes the popup slot to empty and returns the function
+                document.getElementById("popup").innerHTML = "";
+                return
+            }
+        
+
+            //creates the popup
+            let popup_basic = `
+            <div class="full center b-gt">
+                <div class="center card">
+                    <div class="card">
+                        <h1 id="titl"class="center">#TITLE#</h1>
+                        <h5 class="center">##CARTCONTENT##</h5>
+                        
+                        <button class="center w100" onclick="popup('','',true)">Ok!</button>
+                    </div>
+                        
+                </div>
+            </div>`;
+
+            //Changes the popup title and cart content
+            let popup2 = popup_basic.replace("#TITLE#" ,title);
+            let popup = popup2.replace("##CARTCONTENT##" ,text);
+            //creates the popup
+            document.getElementById("popup").innerHTML = popup;
+
+
             
         }
     </script>
