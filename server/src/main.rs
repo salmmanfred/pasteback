@@ -16,7 +16,7 @@ async fn main() {
         .route("/ret/:token", get(paste_hand::ret_token))
         .route("/health", get(health));
 
-    let port = "3000";//option_env!("PORT").unwrap(); //"3000";//
+    let port = option_env!("PORT").unwrap(); //"3000";//
     let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}",port)).await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
