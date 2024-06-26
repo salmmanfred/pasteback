@@ -5,14 +5,7 @@ mod image_hand;
 mod paste_hand;
 #[tokio::main]
 async fn main() {
-
-    use std::fs;
-    let paths = fs::read_dir("./").unwrap();
-
-    for path in paths {
-        println!("Name: {}", path.unwrap().path().display())
-    }
-
+    openfile::write_file_bytes("./favicon.ico", include_bytes!("../favicon.ico").to_vec()).unwrap();
     println!("Starting server");
     //Removes information thats only suppose to be in the experimental version and so on
     process_html();
