@@ -19,7 +19,7 @@ async fn main() {
     //Checks if its in offline mode or experimental mode or if its live 
     //if its live it sets correct ports and so on
     //otherwise it adds the experimental marker and sets the port to 3000
-    let port =    option_env!("PORT").unwrap_or_else(offline_mode);
+    let port = option_env!("PORT").unwrap_or_else(offline_mode);
     match option_env!("EXP"){
         Some(a)=>{
             if a == "EXP"{
