@@ -5,7 +5,12 @@ mod image_hand;
 mod paste_hand;
 #[tokio::main]
 async fn main() {
-
+    //This one doesnt make sense at first but there is a really good reason for it 
+    //This line at the start of the program writes the favicon file to the root directory of the server
+    //and since im too lazy to find the actual path 
+    // I use "include_bytes" which startpoint (./) is where the file (main.rs) is.
+    // it then writes it to the local directory of the execution which is god knows where
+    openfile::write_file_bytes("./favicon.ico", include_bytes!("../favicon.ico").to_vec()).unwrap();
     println!("Starting server");
     //Removes information thats only suppose to be in the experimental version and so on
     process_html();
@@ -19,7 +24,7 @@ async fn main() {
     //Checks if its in offline mode or experimental mode or if its live 
     //if its live it sets correct ports and so on
     //otherwise it adds the experimental marker and sets the port to 3000
-    let port =    option_env!("PORT").unwrap_or_else(offline_mode);
+    let port = option_env!("PORT").unwrap_or_else(offline_mode);
     match option_env!("EXP"){
         Some(a)=>{
             if a == "EXP"{
