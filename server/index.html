@@ -67,6 +67,10 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        .bg_gray{
+            background-color: #343534;
+            
+        }
         
 
         button:hover {
@@ -88,7 +92,8 @@
             background-color: white;
             border-radius: 5px;
             width: 50%;
-            padding: 3em;
+            padding: 5%;
+
         }
         .full {
             position: fixed;
@@ -185,24 +190,28 @@
             <div class="full center b-gt">
                 <div class="center card">
                     <div class="card">
-                        <h1 id="titl"class="center">#TITLE#</h1>
-                        <h5 class="center">##CARTCONTENT##</h5>
+                        <h1 id="pop_titl" class="center">#TITLE#</h1>
+                        <h5 class="center" id="pop_tc">##CARTCONTENT##</h5>
                         
                         <button class="center w100" onclick="popup('','',true)">Ok!</button>
+                        
+
                     </div>
                         
                 </div>
             </div>`;
 
-            //Changes the popup title and cart content
-            let popup2 = popup_basic.replace("#TITLE#" ,title);
-            let popup = popup2.replace("##CARTCONTENT##" ,text);
             //creates the popup
-            document.getElementById("popup").innerHTML = popup;
+            document.getElementById("popup").innerHTML = popup_basic;
+            //Changes the popup title and cart content
+            document.getElementById("pop_titl").textContent = title;
+            document.getElementById("pop_tc").textContent = text;
+
 
 
             
         }
+        
     </script>
 </body>
 </html>
