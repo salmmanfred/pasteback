@@ -48,7 +48,9 @@ pub async fn ret_token(Path(params): Path<String>) -> Json<Paste> {
     let token = params;
 
     if tl.contains_key(&token) {
-        return Json(tl.remove(&token).unwrap());
+        let a = tl.remove(&token).unwrap();
+        drop(tl);
+        return Json(a);
     } else {
         drop(tl);
 
