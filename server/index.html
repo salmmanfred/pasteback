@@ -6,106 +6,156 @@
     <link rel="icon" type="image/x-icon" href="./favicon">
     <title>PasteBack</title>
     <style>
-        
-        .center {
-            display: grid;
-            place-items: center;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
+       * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        h1 {
-            margin-top: 20px;
-            color: #333;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    padding: 2rem 1rem;
+}
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            width: 80%;
-            max-width: 400px;
-        }
+/* Title styling */
+h1 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #222;
+    text-align: center;
+}
 
-        h2 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #555;
-        }
+/* Container for form sections */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #fff;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px;
+}
 
-        input {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        
-        
+/* Subheadings */
+.container h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #444;
+    text-align: center;
+}
 
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .bg_gray{
-            background-color: #343534;
-            
-        }
-        
+/* Input styling */
+input[type="text"],
+input[type="number"] {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+}
 
-        button:hover {
-            background-color: #45a049;
-        }
-        #bigone{
-            margin-top: 2em;
-        }
-        .b-gt {
-            background-color: rgb(128, 128, 128, 0.8);
-            height: 100%;
-        }
-        .center {
-            display: grid;
-            place-items: center;
-        }
-        .card {
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-            background-color: white;
-            border-radius: 5px;
-            width: 50%;
-            padding: 5%;
+button:hover {
+    background-color: #45a049;
+}
 
-        }
-        .full {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 100;
-        }
-        .w100{
-            width: 100%;
-        }
+/* Footer info */
+.container h3 {
+    color: #c0392b;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.container a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.container a:hover {
+    text-decoration: underline;
+}
+
+/* Popup styling */
+.full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(52, 53, 52, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#pop_titl {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#pop_tc {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.w100 {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .container h2 {
+        font-size: 1.1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    button {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+}
     </style>
 </head>
 <body>
