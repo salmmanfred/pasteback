@@ -1,7 +1,7 @@
 use std::{collections::HashMap, sync::Mutex, thread, time};
 
 use axum::extract::{Json, Path};
-use rand::{distributions::Alphanumeric, Rng};
+use rand::{distr::Alphanumeric, Rng};
 use serde::{Deserialize, Serialize};
 
 lazy_static! {
@@ -62,7 +62,7 @@ fn create_key(paste: Paste) -> String {
     let mut tl = TOKENS.lock().unwrap();
     let mut key = "".to_string();
     while key == "" {
-        let s: String = rand::thread_rng()
+        let mut s = rand::rng()
             .sample_iter(&Alphanumeric)
             .take(4)
             .map(char::from)
